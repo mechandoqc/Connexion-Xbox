@@ -9,7 +9,7 @@ client.once('ready', async () => {
 
     const channel = await client.channels.fetch("1505632960236355724");
 
-    channel.send("Méchando est connecté 🤖");
+    channel.send("🤖 Bot Xbox démarré");
 });
 
 client.login(process.env.TOKEN);

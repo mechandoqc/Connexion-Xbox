@@ -15,7 +15,7 @@ async function checkXboxStatus() {
         const people = await XboxLiveAPI.people.find(GAMERTAG);
 
         if (!people || !people.people || people.people.length === 0) {
-            console.log("Gamertag introuvable");
+            console.log("Gamertag not found");
             return;
         }
 
@@ -30,11 +30,11 @@ async function checkXboxStatus() {
         }
 
         if (isOnline && lastStatus === false) {
-            channel.send(`🟢 ${GAMERTAG} vient de se connecter sur Xbox`);
+            channel.send(`🟢 ${GAMERTAG} just connected on Xbox`);
         }
 
         if (!isOnline && lastStatus === true) {
-            channel.send(`🔴 ${GAMERTAG} est hors ligne sur Xbox`);
+            channel.send(`🔴 ${GAMERTAG} is now offline on Xbox`);
         }
 
         lastStatus = isOnline;
@@ -45,11 +45,11 @@ async function checkXboxStatus() {
 }
 
 client.once('ready', async () => {
-    console.log(`Bot connecté : ${client.user.tag}`);
+    console.log(`Bot connected as ${client.user.tag}`);
 
     const channel = await client.channels.fetch(CHANNEL_ID);
 
-    channel.send("🤖 Surveillance Xbox activée");
+    channel.send("🤖 Xbox monitoring started");
 
     setInterval(checkXboxStatus, 60000);
 });
